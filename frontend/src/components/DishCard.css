@@ -114,18 +114,27 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  background: linear-gradient(135deg, #fef5f0, #fff8f3);
+  position: relative;
+  z-index: 1;
 }
 
 .placeholder-image span {
   font-size: 4rem;
   margin-bottom: 0.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
 .placeholder-image p {
-  color: #6c757d;
-  font-size: 0.875rem;
-  font-weight: 500;
+  color: #7e808c;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0 1rem;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .dish-card:hover .dish-image-container img {

@@ -38,15 +38,28 @@ const DishCard: React.FC<DishCardProps> = ({ dish, onToggle, onDelete }) => {
         <img 
           src={dish.imageUrl} 
           alt={dish.dishName}
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          crossOrigin="anonymous"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
-            target.style.display = 'none';
-            const parent = target.parentElement;
-            if (parent && !parent.querySelector('.placeholder-image')) {
-              const placeholder = document.createElement('div');
-              placeholder.className = 'placeholder-image';
-              placeholder.innerHTML = '<span>🍽️</span><p>Image not available</p>';
-              parent.appendChild(placeholder);
+            // Try different strategies to load the image
+            if (!target.dataset.retried) {
+              target.dataset.retried = 'true';
+              // Remove crossOrigin and try again
+              target.removeAttribute('crossorigin');
+              target.src = dish.imageUrl;
+            } else if (!target.dataset.placeholder) {
+              // Show placeholder if all attempts fail
+              target.dataset.placeholder = 'true';
+              target.style.display = 'none';
+              const parent = target.parentElement;
+              if (parent && !parent.querySelector('.placeholder-image')) {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'placeholder-image';
+                placeholder.innerHTML = '<span>🍽️</span><p>' + dish.dishName + '</p>';
+                parent.insertBefore(placeholder, parent.firstChild);
+              }
             }
           }}
         />
