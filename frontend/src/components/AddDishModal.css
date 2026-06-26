@@ -4,32 +4,45 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 9999;
   padding: 1rem;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .modal-content {
   background: white;
-  border-radius: 16px;
+  border-radius: 20px;
   width: 100%;
   max-width: 500px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   animation: slideUp 0.3s ease;
+  position: relative;
+  z-index: 10000;
 }
 
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -37,39 +50,49 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
+  padding: 2rem 2rem 1.5rem 2rem;
   border-bottom: 1px solid #f0f0f0;
+  background: linear-gradient(135deg, #fef5f0, #fff8f3);
+  border-radius: 20px 20px 0 0;
 }
 
 .modal-header h2 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   color: #282c3f;
-  font-weight: 600;
+  font-weight: 700;
   margin: 0;
+  background: linear-gradient(135deg, #282c3f, #fc8019);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .close-button {
-  background: none;
+  background: rgba(239, 68, 68, 0.1);
   border: none;
-  font-size: 2rem;
-  color: #93959f;
+  font-size: 1.75rem;
+  color: #ef4444;
   cursor: pointer;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   transition: all 0.2s;
+  font-weight: 300;
 }
 
 .close-button:hover {
-  background-color: #f5f5f5;
-  color: #282c3f;
+  background-color: #ef4444;
+  color: white;
+  transform: rotate(90deg);
 }
 
 .modal-content form {
-  padding: 1.5rem;
+  padding: 2rem;
+  max-height: 70vh;
+  overflow-y: auto;
 }
 
 .form-group {
