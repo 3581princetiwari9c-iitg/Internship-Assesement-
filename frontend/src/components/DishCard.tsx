@@ -11,7 +11,6 @@ interface DishCardProps {
 const DishCard: React.FC<DishCardProps> = ({ dish, onToggle, onDelete }) => {
   const [isToggling, setIsToggling] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [imageError, setImageError] = useState(false);
 
   const handleToggleClick = async () => {
     setIsToggling(true);
@@ -33,27 +32,24 @@ const DishCard: React.FC<DishCardProps> = ({ dish, onToggle, onDelete }) => {
     }
   };
 
-  const handleImageError = () => {
-    setImageError(true);
-  };
-
   return (
     <div className={`dish-card ${dish.isPublished ? 'published' : 'unpublished'}`}>
       <div className="dish-image-container">
-        {!imageError ? (
-          <img 
-            src={dish.imageUrl} 
-            alt={dish.dishName}
-            loading="lazy"
-            onError={handleImageError}
-            crossOrigin="anonymous"
-          />
-        ) : (
-          <div className="placeholder-image">
-            <span>🍽️</span>
-            <p>Image not available</p>
-          </div>
-        )}
+        <img 
+          src={dish.imageUrl} 
+          alt={dish.dishName}
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.style.display = 'none';
+            const parent = target.parentElement;
+            if (parent && !parent.querySelector('.placeholder-image')) {
+              const placeholder = document.createElement('div');
+              placeholder.className = 'placeholder-image';
+              placeholder.innerHTML = '<span>🍽️</span><p>Image not available</p>';
+              parent.appendChild(placeholder);
+            }
+          }}
+        />
         <div className={`status-badge ${dish.isPublished ? 'published' : 'unpublished'}`}>
           {dish.isPublished ? 'Published' : 'Unpublished'}
         </div>
