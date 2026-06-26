@@ -2,61 +2,59 @@
 
 A professional full-stack application for managing restaurant dishes with real-time updates.
 
-## Architecture
+## 🚀 Features
+
+- ✨ **CRUD Operations** - Create, Read, Update, Delete dishes
+- 🔄 **Real-time Updates** - WebSocket integration for instant synchronization across all clients
+- 🎯 **Interactive Filtering** - Click statistics cards to filter dishes by status
+- 📊 **Live Statistics** - Real-time counts for total, published, and unpublished dishes
+- 🎨 **Modern UI** - Swiggy/Zomato-inspired design with glassmorphism effects
+- 📱 **Responsive Design** - Works seamlessly on desktop and mobile devices
+
+## 🛠️ Tech Stack
 
 ### Backend
-- **Runtime**: Node.js with Express.js
-- **Database**: SQLite
-- **Real-time Communication**: Socket.io (WebSockets)
-- **API**: RESTful endpoints
+- **Node.js** - JavaScript runtime
+- **Express.js** - Web framework
+- **SQLite3** - Embedded database
+- **Socket.io** - Real-time WebSocket communication
+- **CORS** - Cross-origin resource sharing
+- **dotenv** - Environment configuration
 
 ### Frontend
-- **Framework**: React 18 with TypeScript
-- **State Management**: React Hooks
-- **Real-time Updates**: Socket.io Client
-- **Styling**: Custom CSS with responsive design
+- **React 18** - UI library
+- **TypeScript** - Type-safe JavaScript
+- **Socket.io Client** - Real-time updates
+- **CSS3** - Modern styling with animations
 
-## Features
-
-- Display all dishes with images and metadata
-- Toggle publish/unpublish status for dishes
-- Real-time dashboard updates via WebSockets
-- Filter dishes by status (all, published, unpublished)
-- Statistics dashboard showing total, published, and unpublished counts
-- Responsive design for mobile and desktop
-- Error handling and loading states
-- Professional UI with smooth animations
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 .
 ├── backend/
 │   ├── src/
 │   │   ├── config/          # Database configuration
-│   │   ├── controllers/     # Request handlers
-│   │   ├── models/          # Data models
+│   │   ├── controllers/     # Business logic
+│   │   ├── models/          # Data access layer
 │   │   ├── routes/          # API routes
 │   │   ├── middleware/      # Express middleware
-│   │   ├── utils/           # Utility functions
-│   │   └── server.js        # Application entry point
-│   ├── .env                 # Environment variables
+│   │   ├── utils/           # Helper functions
+│   │   └── server.js        # Entry point
+│   ├── .env.example         # Environment variables template
 │   └── package.json
 │
 └── frontend/
     ├── src/
     │   ├── components/      # React components
     │   ├── services/        # API service layer
-    │   ├── types/           # TypeScript type definitions
+    │   ├── types/           # TypeScript definitions
     │   ├── hooks/           # Custom React hooks
-    │   ├── App.tsx          # Root component
-    │   └── index.tsx        # Application entry point
-    ├── public/
-    ├── .env                 # Environment variables
+    │   └── App.tsx          # Root component
+    ├── .env.example         # Environment variables template
     └── package.json
 ```
 
-## Installation
+## 🚀 Getting Started
 
 ### Prerequisites
 - Node.js (v16 or higher)
@@ -74,19 +72,19 @@ cd backend
 npm install
 ```
 
-3. Initialize database with sample data:
+3. Create environment file:
+```bash
+cp .env.example .env
+```
+
+4. Initialize database with sample data:
 ```bash
 npm run init-db
 ```
 
-4. Start the server:
+5. Start the server:
 ```bash
 npm start
-```
-
-For development with auto-reload:
-```bash
-npm run dev
 ```
 
 The backend will run on `http://localhost:5000`
@@ -103,88 +101,76 @@ cd frontend
 npm install
 ```
 
-3. Start the development server:
+3. Create environment file:
+```bash
+cp .env.example .env
+```
+
+4. Start the development server:
 ```bash
 npm start
 ```
 
 The frontend will run on `http://localhost:3000`
 
-## API Endpoints
+## 📡 API Endpoints
 
-### GET /api/dishes
-Fetch all dishes from the database.
+### Dishes
 
-**Response:**
-```json
-{
-  "success": true,
-  "data": [
-    {
-      "dishId": "d1",
-      "dishName": "Margherita Pizza",
-      "imageUrl": "https://example.com/image.jpg",
-      "isPublished": true,
-      "createdAt": "2026-06-23T10:00:00.000Z",
-      "updatedAt": "2026-06-23T10:00:00.000Z"
-    }
-  ],
-  "count": 1
-}
-```
+- **GET** `/api/dishes` - Fetch all dishes
+- **GET** `/api/dishes/:dishId` - Fetch single dish by ID
+- **POST** `/api/dishes` - Create new dish
+- **PATCH** `/api/dishes/:dishId/toggle` - Toggle publish status
+- **DELETE** `/api/dishes/:dishId` - Delete dish
 
-### GET /api/dishes/:dishId
-Fetch a specific dish by ID.
+### Health Check
 
-**Response:**
-```json
-{
-  "success": true,
-  "data": {
-    "dishId": "d1",
-    "dishName": "Margherita Pizza",
-    "imageUrl": "https://example.com/image.jpg",
-    "isPublished": true
-  }
-}
-```
+- **GET** `/health` - Server health status
 
-### PATCH /api/dishes/:dishId/toggle
-Toggle the published status of a dish.
+## 🔌 WebSocket Events
 
-**Response:**
-```json
-{
-  "success": true,
-  "message": "Dish status updated successfully",
-  "data": {
-    "dishId": "d1",
-    "dishName": "Margherita Pizza",
-    "imageUrl": "https://example.com/image.jpg",
-    "isPublished": false
-  }
-}
-```
+### Client → Server
+- Connection established automatically
 
-## WebSocket Events
+### Server → Client
+- `dishCreated` - New dish added
+- `dishUpdated` - Dish status changed
+- `dishDeleted` - Dish removed
 
-### Server to Client
+## 🎯 Usage Guide
 
-**Event**: `dishUpdated`
+### Viewing Dishes
+- All dishes are displayed in a grid layout
+- Each card shows dish image, name, ID, and publish status
 
-Emitted when a dish status is changed, notifying all connected clients.
+### Filtering Dishes
+- Click **Total Dishes** card to view all dishes
+- Click **Published** card to view only published dishes
+- Click **Unpublished** card to view only unpublished dishes
 
-**Payload:**
-```json
-{
-  "dishId": "d1",
-  "dishName": "Margherita Pizza",
-  "imageUrl": "https://example.com/image.jpg",
-  "isPublished": false
-}
-```
+### Adding a Dish
+1. Click the **"+ Add Dish"** button in the header
+2. Fill in the dish name and image URL
+3. Toggle "Publish immediately" if needed
+4. Click **"Add Dish"** to save
 
-## Environment Variables
+### Updating Status
+- Click the **Publish/Unpublish** button on any dish card
+- Status updates immediately across all open browser tabs
+
+### Deleting a Dish
+1. Hover over a dish card
+2. Click the red **×** button in the top-right corner
+3. Confirm the deletion
+4. Dish is removed from database and all clients
+
+## 🧪 Testing Real-time Features
+
+1. Open `http://localhost:3000` in two different browser windows
+2. Add, update, or delete a dish in one window
+3. Watch the changes appear instantly in the other window
+
+## 🔧 Environment Variables
 
 ### Backend (.env)
 ```
@@ -200,7 +186,7 @@ REACT_APP_API_URL=http://localhost:5000/api
 REACT_APP_SOCKET_URL=http://localhost:5000
 ```
 
-## Database Schema
+## 📦 Database Schema
 
 ```sql
 CREATE TABLE dishes (
@@ -213,58 +199,79 @@ CREATE TABLE dishes (
 );
 ```
 
-## Development
+## 🏗️ Architecture
 
-### Backend Development
-```bash
-cd backend
-npm run dev
-```
+### Backend (MVC Pattern)
+- **Models** - Database operations (DishModel)
+- **Controllers** - Business logic (DishController)
+- **Routes** - API endpoints (dishRoutes)
+- **Middleware** - Error handling, logging
 
-### Frontend Development
-```bash
-cd frontend
-npm start
-```
+### Frontend (Component-Based)
+- **Components** - UI building blocks
+- **Services** - API communication layer
+- **Hooks** - Reusable logic (useWebSocket)
+- **Types** - TypeScript interfaces
 
-## Testing Real-time Updates
+## 🎨 Design Features
 
-1. Open the dashboard in multiple browser windows
-2. Toggle a dish status in one window
-3. Observe the change reflected immediately in all other windows
-4. Alternatively, use the API directly to change status and watch the dashboard update automatically
+- **Gradient Backgrounds** - Animated color transitions
+- **Glassmorphism** - Frosted glass UI elements
+- **Smooth Animations** - Hover effects and transitions
+- **Responsive Grid** - Adapts to screen size
+- **Color Coding** - Green (published), Red (unpublished), Orange (brand)
 
-## Production Build
+## 🐛 Troubleshooting
+
+### Backend won't start
+- Check if port 5000 is available
+- Verify Node.js is installed: `node --version`
+- Ensure database is initialized: `npm run init-db`
+
+### Frontend won't connect
+- Verify backend is running on port 5000
+- Check CORS settings in backend .env
+- Clear browser cache and restart
+
+### Real-time updates not working
+- Check WebSocket connection in browser console
+- Verify Socket.io version compatibility
+- Ensure firewall allows WebSocket connections
+
+## 📝 Scripts
 
 ### Backend
 ```bash
-cd backend
-npm start
+npm start       # Start production server
+npm run dev     # Start with auto-reload (nodemon)
+npm run init-db # Initialize database
 ```
 
 ### Frontend
 ```bash
-cd frontend
-npm run build
+npm start       # Start development server
+npm run build   # Build for production
+npm test        # Run tests
 ```
 
-The build output will be in the `frontend/build` directory.
+## 🤝 Contributing
 
-## Technologies Used
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a pull request
 
-### Backend
-- Express.js: Web framework
-- SQLite3: Database
-- Socket.io: Real-time communication
-- CORS: Cross-origin resource sharing
-- dotenv: Environment variable management
+## 📄 License
 
-### Frontend
-- React 18: UI library
-- TypeScript: Type safety
-- Socket.io Client: Real-time updates
-- CSS3: Styling with animations
+MIT License - feel free to use this project for learning or production.
 
-## License
+## 👨‍💻 Author
 
-MIT
+Created for Internship Assessment
+
+## 🙏 Acknowledgments
+
+- UI inspired by Swiggy and Zomato
+- Icons and design patterns from modern web standards
+- Real-time functionality powered by Socket.io
