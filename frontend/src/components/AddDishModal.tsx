@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import './AddDishModal.css';
 
 interface AddDishModalProps {
@@ -54,7 +55,7 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ isOpen, onClose, onSubmit }
     }
   };
 
-  return (
+  const modalContent = (
     <div className="modal-overlay" onClick={handleClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
@@ -131,6 +132,8 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ isOpen, onClose, onSubmit }
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 };
 
 export default AddDishModal;
