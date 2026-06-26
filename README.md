@@ -2,16 +2,16 @@
 
 A professional full-stack application for managing restaurant dishes with real-time updates.
 
-## 🚀 Features
+##  Features
 
-- ✨ **CRUD Operations** - Create, Read, Update, Delete dishes
-- 🔄 **Real-time Updates** - WebSocket integration for instant synchronization across all clients
-- 🎯 **Interactive Filtering** - Click statistics cards to filter dishes by status
-- 📊 **Live Statistics** - Real-time counts for total, published, and unpublished dishes
-- 🎨 **Modern UI** - Swiggy/Zomato-inspired design with glassmorphism effects
-- 📱 **Responsive Design** - Works seamlessly on desktop and mobile devices
+-  **CRUD Operations** - Create, Read, Update, Delete dishes
+-  **Real-time Updates** - WebSocket integration for instant synchronization across all clients
+-  **Interactive Filtering** - Click statistics cards to filter dishes by status
+-  **Live Statistics** - Real-time counts for total, published, and unpublished dishes
+-  **Modern UI** - Swiggy/Zomato-inspired design with glassmorphism effects
+-  **Responsive Design** - Works seamlessly on desktop and mobile devices
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Backend
 - **Node.js** - JavaScript runtime
@@ -27,7 +27,7 @@ A professional full-stack application for managing restaurant dishes with real-t
 - **Socket.io Client** - Real-time updates
 - **CSS3** - Modern styling with animations
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 .
@@ -54,7 +54,7 @@ A professional full-stack application for managing restaurant dishes with real-t
     └── package.json
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js (v16 or higher)
@@ -127,7 +127,7 @@ The frontend will run on `http://localhost:3000`
 
 - **GET** `/health` - Server health status
 
-## 🔌 WebSocket Events
+## WebSocket Events
 
 ### Client → Server
 - Connection established automatically
@@ -137,7 +137,7 @@ The frontend will run on `http://localhost:3000`
 - `dishUpdated` - Dish status changed
 - `dishDeleted` - Dish removed
 
-## 🎯 Usage Guide
+## Usage Guide
 
 ### Viewing Dishes
 - All dishes are displayed in a grid layout
@@ -164,13 +164,13 @@ The frontend will run on `http://localhost:3000`
 3. Confirm the deletion
 4. Dish is removed from database and all clients
 
-## 🧪 Testing Real-time Features
+## Testing Real-time Features
 
 1. Open `http://localhost:3000` in two different browser windows
 2. Add, update, or delete a dish in one window
 3. Watch the changes appear instantly in the other window
 
-## 🔧 Environment Variables
+## Environment Variables
 
 ### Backend (.env)
 ```
@@ -186,7 +186,7 @@ REACT_APP_API_URL=http://localhost:5000/api
 REACT_APP_SOCKET_URL=http://localhost:5000
 ```
 
-## 📦 Database Schema
+## Database Schema
 
 ```sql
 CREATE TABLE dishes (
@@ -199,7 +199,7 @@ CREATE TABLE dishes (
 );
 ```
 
-## 🏗️ Architecture
+## Architecture
 
 ### Backend (MVC Pattern)
 - **Models** - Database operations (DishModel)
@@ -213,7 +213,7 @@ CREATE TABLE dishes (
 - **Hooks** - Reusable logic (useWebSocket)
 - **Types** - TypeScript interfaces
 
-## 🎨 Design Features
+## Design Features
 
 - **Gradient Backgrounds** - Animated color transitions
 - **Glassmorphism** - Frosted glass UI elements
@@ -221,7 +221,7 @@ CREATE TABLE dishes (
 - **Responsive Grid** - Adapts to screen size
 - **Color Coding** - Green (published), Red (unpublished), Orange (brand)
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Backend won't start
 - Check if port 5000 is available
@@ -238,7 +238,7 @@ CREATE TABLE dishes (
 - Verify Socket.io version compatibility
 - Ensure firewall allows WebSocket connections
 
-## 📝 Scripts
+## Scripts
 
 ### Backend
 ```bash
@@ -254,7 +254,7 @@ npm run build   # Build for production
 npm test        # Run tests
 ```
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -262,15 +262,15 @@ npm test        # Run tests
 4. Push to the branch
 5. Open a pull request
 
-## 📄 License
+## License
 
 MIT License - feel free to use this project for learning or production.
 
-## 👨‍💻 Author
+## Author
 
 Created for Internship Assessment
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - UI inspired by Swiggy and Zomato
 - Icons and design patterns from modern web standards
