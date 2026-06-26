@@ -106,6 +106,14 @@
   cursor: not-allowed;
 }
 
+.form-hint {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #7e808c;
+  line-height: 1.4;
+}
+
 .checkbox-group label {
   display: flex;
   align-items: center;

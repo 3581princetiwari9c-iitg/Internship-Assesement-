@@ -89,6 +89,11 @@ const AddDishModal: React.FC<AddDishModalProps> = ({ isOpen, onClose, onSubmit }
               disabled={isSubmitting}
               required
             />
+            <small className="form-hint">
+              Enter a direct image URL (ends with .jpg, .png, .webp, etc.)
+              <br />
+              Example: https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400
+            </small>
           </div>
 
           <div className="form-group checkbox-group">
