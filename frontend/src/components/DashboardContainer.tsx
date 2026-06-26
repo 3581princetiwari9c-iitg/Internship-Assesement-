@@ -34,6 +34,10 @@ const DashboardContainer: React.FC = () => {
 
   const handleDishCreated = useCallback((newDish: Dish) => {
     setDishes(prevDishes => {
+      // Check if dish already exists to prevent duplicates
+      if (prevDishes.some(dish => dish.dishId === newDish.dishId)) {
+        return prevDishes;
+      }
       const updatedDishes = [...prevDishes, newDish];
       return updatedDishes.sort((a, b) => parseInt(a.dishId) - parseInt(b.dishId));
     });
@@ -80,11 +84,8 @@ const DashboardContainer: React.FC = () => {
 
   const handleAddDish = async (dishData: { dishName: string; imageUrl: string; isPublished: boolean }) => {
     try {
-      const newDish = await dishService.createDish(dishData);
-      setDishes(prevDishes => {
-        const updatedDishes = [...prevDishes, newDish];
-        return updatedDishes.sort((a, b) => parseInt(a.dishId) - parseInt(b.dishId));
-      });
+      await dishService.createDish(dishData);
+      // Don't add locally - WebSocket will handle it
     } catch (err) {
       console.error('Error creating dish:', err);
       throw err;
