@@ -11,6 +11,7 @@ interface DishCardProps {
 const DishCard: React.FC<DishCardProps> = ({ dish, onToggle, onDelete }) => {
   const [isToggling, setIsToggling] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const handleToggleClick = async () => {
     setIsToggling(true);
@@ -32,17 +33,27 @@ const DishCard: React.FC<DishCardProps> = ({ dish, onToggle, onDelete }) => {
     }
   };
 
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
   return (
     <div className={`dish-card ${dish.isPublished ? 'published' : 'unpublished'}`}>
       <div className="dish-image-container">
-        <img 
-          src={dish.imageUrl} 
-          alt={dish.dishName}
-          loading="lazy"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = 'https://via.placeholder.com/300x200?text=No+Image';
-          }}
-        />
+        {!imageError ? (
+          <img 
+            src={dish.imageUrl} 
+            alt={dish.dishName}
+            loading="lazy"
+            onError={handleImageError}
+            crossOrigin="anonymous"
+          />
+        ) : (
+          <div className="placeholder-image">
+            <span>🍽️</span>
+            <p>Image not available</p>
+          </div>
+        )}
         <div className={`status-badge ${dish.isPublished ? 'published' : 'unpublished'}`}>
           {dish.isPublished ? 'Published' : 'Unpublished'}
         </div>

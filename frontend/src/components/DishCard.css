@@ -107,6 +107,27 @@
   z-index: 1;
 }
 
+.placeholder-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.placeholder-image span {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.placeholder-image p {
+  color: #6c757d;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
 .dish-card:hover .dish-image-container img {
   transform: scale(1.1);
 }
