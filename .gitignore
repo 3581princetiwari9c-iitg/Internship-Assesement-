@@ -6,3 +6,5 @@ node_modules/
 database.sqlite
 build/
 dist/
+.vscode/
+package-lock.json
